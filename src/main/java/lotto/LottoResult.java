@@ -4,18 +4,11 @@ import java.util.List;
 
 public class LottoResult {
     private final List<LottoRank> lottoRanks;
-    private final Long totalPurchaseAmount;
+    private final PurchaseAmount totalPurchaseAmount;
 
-    public LottoResult(List<LottoRank> lottoRanks, Long totalPurchaseAmount) {
-        validate(totalPurchaseAmount);
+    public LottoResult(List<LottoRank> lottoRanks, PurchaseAmount totalPurchaseAmount) {
         this.lottoRanks = lottoRanks;
         this.totalPurchaseAmount = totalPurchaseAmount;
-    }
-
-    private void validate(Long totalPurchaseAmount) {
-        if (totalPurchaseAmount <= 0) {
-            throw new IllegalArgumentException("구매 금액은 0보다 커야 합니다.");
-        }
     }
 
     public long calculateTotalPrize() {
@@ -25,6 +18,6 @@ public class LottoResult {
     }
 
     public float calculateReturnRate() {
-        return (float) calculateTotalPrize() / totalPurchaseAmount;
+        return (float) calculateTotalPrize() / totalPurchaseAmount.getPurchaseAmount();
     }
 }

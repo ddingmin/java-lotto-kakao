@@ -22,7 +22,7 @@ public class LottoResultTest {
                 LottoRank.FIFTH
         );
 
-        Assertions.assertDoesNotThrow(() -> new LottoResult(ranks, 14_000L));
+        Assertions.assertDoesNotThrow(() -> new LottoResult(ranks, new PurchaseAmount(14_000L)));
     }
 
     @ParameterizedTest
@@ -30,7 +30,7 @@ public class LottoResultTest {
     void 구매금액이_0이하면_예외를_던진다(long purchaseAmount) {
         List<LottoRank> ranks = List.of(LottoRank.FIRST);
 
-        assertThatThrownBy(() -> new LottoResult(ranks, purchaseAmount))
+        assertThatThrownBy(() -> new LottoResult(ranks, new PurchaseAmount(purchaseAmount)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +42,7 @@ public class LottoResultTest {
                 LottoRank.FIRST,
                 LottoRank.SECOND
         );
-        LottoResult result = new LottoResult(ranks, 14_000L);
+        LottoResult result = new LottoResult(ranks, new PurchaseAmount(14_000L));
         assertThat(result.calculateTotalPrize()).isEqualTo(4_030_000_000L);
     }
 
@@ -53,7 +53,7 @@ public class LottoResultTest {
                 LottoRank.FIRST,
                 LottoRank.SECOND
         );
-        LottoResult result = new LottoResult(ranks, 10_000L);
+        LottoResult result = new LottoResult(ranks, new PurchaseAmount(10_000L));
         assertThat(result.calculateReturnRate()).isEqualTo(403_000L);
     }
 }
