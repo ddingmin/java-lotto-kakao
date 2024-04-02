@@ -58,8 +58,8 @@
 
 ### LottoResult
 
-- [ ] 당첨 총액을 계산한다.
-- [ ] 수익률을 계산한다.
+- [X] 당첨 총액을 계산한다.
+- [X] 수익률을 계산한다.
 
 ### LottoTicketGenerator
 
