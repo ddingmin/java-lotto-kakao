@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.model.LottoRank;
+import lotto.model.LottoResult;
+import lotto.model.PurchaseAmount;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

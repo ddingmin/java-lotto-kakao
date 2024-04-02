@@ -1,6 +1,9 @@
 package lotto;
 
-import org.junit.jupiter.api.Assertions;
+import lotto.model.LottoNumber;
+import lotto.model.LottoRank;
+import lotto.model.LottoTicket;
+import lotto.model.LottoWinningNumbers;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;

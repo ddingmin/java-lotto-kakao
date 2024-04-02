@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum LottoRank {
     FIRST(6, 2_000_000_000),
@@ -30,5 +30,13 @@ public enum LottoRank {
 
     public int getPrize() {
         return prize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isMatchBonus() {
+        return this == SECOND;
     }
 }
