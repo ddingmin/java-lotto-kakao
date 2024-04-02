@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class LottoTicket {
 
+    public static final Long PRICE = 1_000L;
     public static final int SIZE = 6;
     private final List<LottoNumber> lottoNumbers;
 
@@ -36,5 +37,13 @@ public class LottoTicket {
     public List<LottoNumber> getLottoNumbers() {
         return this.lottoNumbers.stream()
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public LottoRank match(LottoWinningNumbers winningNumbers) {
+        int matchCount = (int) lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+        boolean bonusMatch = lottoNumbers.stream().anyMatch(winningNumbers::matchBonus);
+        return LottoRank.valueOf(matchCount, bonusMatch);
     }
 }

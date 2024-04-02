@@ -33,4 +33,38 @@ public class LottoTicketsTest {
 
         assertThat(lottoTickets.getSize()).isEqualTo(lottoTicketList.size());
     }
+
+    @Test
+    void 로또_당첨_결과를_반환한다() {
+        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(List.of(
+                new LottoNumber(1),
+                new LottoNumber(2),
+                new LottoNumber(3),
+                new LottoNumber(4),
+                new LottoNumber(5),
+                new LottoNumber(6)
+        ), new LottoNumber(7));
+
+        LottoTickets lottoTickets = new LottoTickets(List.of(
+                new LottoTicket(List.of(
+                        new LottoNumber(1),
+                        new LottoNumber(2),
+                        new LottoNumber(3),
+                        new LottoNumber(4),
+                        new LottoNumber(5),
+                        new LottoNumber(6)
+                )),
+                new LottoTicket(List.of(
+                        new LottoNumber(1),
+                        new LottoNumber(2),
+                        new LottoNumber(3),
+                        new LottoNumber(4),
+                        new LottoNumber(5),
+                        new LottoNumber(7)
+                ))
+        ));
+
+        assertThat(lottoTickets.getWinningResult(lottoWinningNumbers))
+                .isEqualTo(new LottoResult(List.of(LottoRank.FIRST, LottoRank.SECOND), new PurchaseAmount(2 * LottoTicket.PRICE)));
+    }
 }

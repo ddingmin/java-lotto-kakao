@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LottoWinningNumbers {
     public static final int NORMAL_SIZE = 6;
@@ -20,5 +21,26 @@ public class LottoWinningNumbers {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 기본 당첨 번호와 중복될 수 없습니다.");
         }
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
+    }
+
+    public boolean matchBonus(LottoNumber lottoNumber) {
+        return bonusNumber.equals(lottoNumber);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoWinningNumbers that = (LottoWinningNumbers) o;
+        return Objects.equals(lottoNumbers, that.lottoNumbers) && Objects.equals(bonusNumber, that.bonusNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lottoNumbers, bonusNumber);
     }
 }

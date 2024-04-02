@@ -63,4 +63,27 @@ public class LottoTicketTest {
                 .sorted(Comparator.comparing(LottoNumber::getNumber))
                 .collect(Collectors.toList()));
     }
+
+    @Test
+    void 로또_당첨_랭크를_계산한다() {
+        LottoTicket lottoTicket = new LottoTicket(List.of(
+                new LottoNumber(1),
+                new LottoNumber(2),
+                new LottoNumber(3),
+                new LottoNumber(4),
+                new LottoNumber(5),
+                new LottoNumber(6)
+        ));
+
+        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(List.of(
+                new LottoNumber(1),
+                new LottoNumber(2),
+                new LottoNumber(3),
+                new LottoNumber(4),
+                new LottoNumber(5),
+                new LottoNumber(9)
+        ), new LottoNumber(6));
+
+        assertThat(lottoTicket.match(lottoWinningNumbers)).isEqualTo(LottoRank.SECOND);
+    }
 }
