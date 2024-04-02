@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Output {
 
-    public static void printPurchaseAmount(Long purchaseAmount) {
+    public static void printPurchaseAmount(int purchaseAmount) {
         System.out.println(purchaseAmount + "개를 구매했습니다.");
     }
 
@@ -20,9 +20,12 @@ public class Output {
     public static void printResult(LottoResultDto lottoResultDto) {
         System.out.println("\n당첨 통계");
         System.out.println("---------");
-        lottoResultDto.getLottoResult().forEach((lottoRank, count) -> {
-            System.out.println(lottoRank.getMatchCount() + "개 일치" + (lottoRank.isMatchBonus() ? ", 보너스 볼 일치" : "") + "(" + lottoRank.getPrize() + ")- " + count + "개");
-        });
+        lottoResultDto.getLottoResult().entrySet().stream()
+                .sorted((o1, o2) -> o1.getKey().getPrize() - o2.getKey().getPrize())
+                .forEach(entry -> {
+                    System.out.println(entry.getKey().getMatchCount() + "개 일치" + (entry.getKey().isMatchBonus() ? ", 보너스 볼 일치" : "")
+                            + "(" + entry.getKey().getPrize() + ")- " + entry.getValue() + "개");
+                });
         System.out.println("총 수익률은 " + lottoResultDto.getReturnRate() + "입니다.");
 
     }

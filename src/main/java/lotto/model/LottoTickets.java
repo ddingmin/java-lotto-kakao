@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,5 +23,9 @@ public class LottoTickets {
                 .collect(Collectors.toList());
 
         return new LottoResult(lottoRanks, new PurchaseAmount(this.getSize() * LottoTicket.PRICE));
+    }
+
+    public List<LottoTicket> getLottoTickets() {
+        return Collections.unmodifiableList(lottoTickets);
     }
 }

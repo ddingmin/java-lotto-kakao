@@ -16,7 +16,7 @@ public class PurchaseAmount {
         }
     }
 
-    public float getPurchaseAmount() {
+    public long getPurchaseAmount() {
         return amount;
     }
 

@@ -1,7 +1,9 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LottoWinningNumbers {
     public static final int NORMAL_SIZE = 6;
@@ -12,6 +14,18 @@ public class LottoWinningNumbers {
         validateDuplicationAndSize(lottoNumbers, bonusNumber);
         this.lottoNumbers = lottoNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public LottoWinningNumbers(List<Integer> lottoNumbers, int bonusNumber) {
+        this(lottoNumbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList()), new LottoNumber(bonusNumber));
+    }
+
+    public LottoWinningNumbers(String lottoNumbers, int bonusNumber) {
+        this(Arrays.stream(lottoNumbers.split(", "))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList()), bonusNumber);
     }
 
     private void validateDuplicationAndSize(List<LottoNumber> lottoNumbers, LottoNumber bonusNumber) {

@@ -22,6 +22,10 @@ public class LottoResult {
         return (float) calculateTotalPrize() / totalPurchaseAmount.getPurchaseAmount();
     }
 
+    public List<LottoRank> getLottoRanks() {
+        return lottoRanks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
