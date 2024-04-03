@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.*;
+import lotto.model.dto.LottoResultDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.Collectors;
@@ -12,12 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LottoGameTest {
     @Test
-    void 구매_금액과_당첨_번호를_받아서_로또_게임을_생성한다() {
+    void 구매_금액을_받아서_로또_게임을_생성한다() {
         int purchaseAmount = 1000;
-        String lottos = "1, 2, 3, 4, 5, 6";
-        int bonus = 7;
 
-        assertDoesNotThrow(() -> new LottoGame(purchaseAmount, lottos, bonus));
+        assertDoesNotThrow(() -> new LottoGame(purchaseAmount));
     }
 
     @Test
@@ -30,9 +29,12 @@ public class LottoGameTest {
                         .collect(Collectors.toList()));
             }
         };
-        LottoGame lottoGame = new LottoGame(1000, "1, 2, 3, 4, 5, 6", 7);
+        LottoGame lottoGame = new LottoGame(1000);
+        lottoGame.buy(new LottoMachine(generator));
+        lottoGame.raffle("1, 2, 3, 4, 5, 6", 7);
 
-        assertThat(lottoGame.raffle(new LottoMachine(generator)).calculateTotalPrize()).isEqualTo(LottoRank.FIRST.getPrize());
+        LottoResultDto result = lottoGame.getResult();
+        assertThat(result.getTotalPrize()).isEqualTo(LottoRank.FIRST.getPrize());
     }
 
     @Test
@@ -45,12 +47,13 @@ public class LottoGameTest {
                         .collect(Collectors.toList()));
             }
         };
-        LottoGame lottoGame = new LottoGame(1000, "1, 2, 3, 4, 5, 6", 7);
-
-        LottoResult result = lottoGame.raffle(new LottoMachine(generator));
+        LottoGame lottoGame = new LottoGame(1000);
+        lottoGame.buy(new LottoMachine(generator));
+        lottoGame.raffle("1, 2, 3, 4, 5, 6", 7);
+        LottoResultDto result = lottoGame.getResult();
         assertAll(
-                () -> assertThat(result.calculateTotalPrize()).isEqualTo(0),
-                () -> assertThat(result.calculateReturnRate()).isEqualTo(0.0F)
+                () -> assertThat(result.getTotalPrize()).isEqualTo(0),
+                () -> assertThat(result.getReturnRate()).isEqualTo(0.0F)
         );
     }
 }

@@ -3,22 +3,18 @@ package lotto.model.dto;
 import lotto.model.LottoRank;
 import lotto.model.LottoResult;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResultDto {
+    private final long totalPrize;
     private final float returnRate;
 
     private final Map<LottoRank, Integer> lottoResult;
 
-    public LottoResultDto(float returnRate, Map<LottoRank, Integer> lottoResult) {
-        this.returnRate = returnRate;
-        this.lottoResult = lottoResult;
-    }
-
     public LottoResultDto(LottoResult lottoResult) {
         this.returnRate = lottoResult.calculateReturnRate();
+        this.totalPrize = lottoResult.calculateTotalPrize();
         Map<LottoRank, Integer> lottoResultMap = new HashMap<>();
         for (LottoRank lottoRank : LottoRank.values()) {
             if (lottoRank == LottoRank.NONE) {
@@ -37,6 +33,10 @@ public class LottoResultDto {
 
     public float getReturnRate() {
         return returnRate;
+    }
+
+    public long getTotalPrize() {
+        return totalPrize;
     }
 
     public Map<LottoRank, Integer> getLottoResult() {

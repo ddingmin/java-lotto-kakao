@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class Output {
 
-    public static void printPurchaseAmount(int purchaseAmount) {
-        System.out.println(purchaseAmount + "개를 구매했습니다.");
+    public static void printPurchaseAmount(int count) {
+        System.out.println(count + "개를 구매했습니다.");
     }
 
     public static void printLottoTickets(List<LottoTicketDto> lottoTickets) {

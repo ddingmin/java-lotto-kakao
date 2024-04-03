@@ -6,9 +6,9 @@ public class Input {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static Long getPurchaseAmount() {
+    public static int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Long.parseLong(scanner.nextLine());
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static String getWinningNumbers() {
