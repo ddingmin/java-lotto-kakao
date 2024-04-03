@@ -28,7 +28,7 @@ public class LottoTicket {
     }
 
     private void validateSize(List<LottoNumber> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != SIZE) {
             throw new IllegalArgumentException("로또 번호는 6개만 가능합니다.");
         }
     }
