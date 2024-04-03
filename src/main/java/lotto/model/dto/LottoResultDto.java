@@ -3,8 +3,9 @@ package lotto.model.dto;
 import lotto.model.LottoRank;
 import lotto.model.LottoResult;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoResultDto {
     private final long totalPrize;
@@ -14,19 +15,12 @@ public class LottoResultDto {
     public LottoResultDto(LottoResult lottoResult) {
         this.returnRate = lottoResult.calculateReturnRate();
         this.totalPrize = lottoResult.calculateTotalPrize();
-        Map<LottoRank, Integer> lottoResultMap = new HashMap<>();
-        for (LottoRank lottoRank : LottoRank.values()) {
-            if (lottoRank == LottoRank.NONE) {
-                continue;
-            }
-            lottoResultMap.put(lottoRank, 0);
-        }
-        for (LottoRank lottoRank : lottoResult.getLottoRanks()) {
-            if (lottoRank == LottoRank.NONE) {
-                continue;
-            }
-            lottoResultMap.put(lottoRank, lottoResultMap.get(lottoRank) + 1);
-        }
+        Map<LottoRank, Integer> lottoResultMap = Arrays.stream(LottoRank.values())
+                .filter(lottoRank -> lottoRank != LottoRank.NONE)
+                .collect(Collectors.toMap(lottoRank -> lottoRank, lottoRank -> 0, (a, b) -> b));
+        lottoResult.getLottoRanks().stream()
+                .filter(lottoRank -> lottoRank != LottoRank.NONE)
+                .forEach(lottoRank -> lottoResultMap.put(lottoRank, lottoResultMap.get(lottoRank) + 1));
         this.lottoResult = lottoResultMap;
     }
 
