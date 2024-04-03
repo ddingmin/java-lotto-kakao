@@ -16,6 +16,10 @@ public class LottoGame {
         this.purchaseAmount = new PurchaseAmount(purchaseAmount);
     }
 
+    public int getTicketCount() {
+        return (int) (this.purchaseAmount.getPurchaseAmount() / LottoTicket.PRICE);
+    }
+
     public List<LottoTicketDto> buy(LottoMachine lottoMachine) {
         lottoTickets = lottoMachine.buy(purchaseAmount);
         return getLottoTickets();

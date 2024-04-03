@@ -7,9 +7,9 @@ import lotto.view.Output;
 public class Main {
     public static void main(String[] args) {
         int purchaseAmount = Input.getPurchaseAmount();
-        Output.printPurchaseAmount(purchaseAmount / LottoTicket.PRICE);
-
         LottoGame lottoGame = new LottoGame(purchaseAmount);
+        Output.printPurchaseAmount(lottoGame.getTicketCount());
+
         LottoTicketGeneratable generator = new LottoTicketGenerator();
         Output.printLottoTickets(lottoGame.buy(new LottoMachine(generator)));
 

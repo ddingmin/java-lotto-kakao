@@ -20,6 +20,13 @@ public class LottoGameTest {
     }
 
     @Test
+    void 구매_금액을_받아서_구매_가능한_수의_로또_티겟을_구매한다() {
+        LottoGame lottoGame = new LottoGame(1000);
+
+        assertThat(lottoGame.getTicketCount()).isEqualTo(1000 / LottoTicket.PRICE);
+    }
+
+    @Test
     void 로또_게임에서_1등에_당첨된다() {
         LottoTicketGeneratable generator = new LottoTicketGeneratable() {
             @Override
