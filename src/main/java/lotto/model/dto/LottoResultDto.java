@@ -9,7 +9,6 @@ import java.util.Map;
 public class LottoResultDto {
     private final long totalPrize;
     private final float returnRate;
-
     private final Map<LottoRank, Integer> lottoResult;
 
     public LottoResultDto(LottoResult lottoResult) {

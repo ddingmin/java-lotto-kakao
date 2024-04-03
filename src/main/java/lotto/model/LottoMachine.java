@@ -10,7 +10,6 @@ public class LottoMachine {
         this.generator = generator;
     }
 
-
     public LottoTickets buy(PurchaseAmount purchaseAmount) {
         int purchaseTicket = calculatePurchaseTicket(purchaseAmount);
 

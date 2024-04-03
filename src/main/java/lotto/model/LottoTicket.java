@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoTicket {
-
     public static final int PRICE = 1_000;
     public static final int SIZE = 6;
     private final List<LottoNumber> lottoNumbers;
