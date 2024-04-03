@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class LottoTicket {
 
-    public static final Long PRICE = 1_000L;
+    public static final int PRICE = 1_000;
     public static final int SIZE = 6;
     private final List<LottoNumber> lottoNumbers;
 

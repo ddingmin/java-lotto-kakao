@@ -10,6 +10,10 @@ public class PurchaseAmount {
         this.amount = amount;
     }
 
+    public PurchaseAmount(int amount) {
+        this((long) amount);
+    }
+
     private void validate(Long amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("구매 금액은 0이하가 될 수 없습니다.");

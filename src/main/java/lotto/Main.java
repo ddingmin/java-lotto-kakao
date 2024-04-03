@@ -16,10 +16,11 @@ public class Main {
         int count = (int) amount.getPurchaseAmount() / 1000;
         Output.printPurchaseAmount(count);
 
+        LottoTicketGeneratable generator = new LottoTicketGenerator();
 
         List<LottoTicket> lottoTicketList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottoTicketList.add(LottoTicketGenerator.generate());
+            lottoTicketList.add(generator.generate());
         }
         LottoTickets lottoTickets = new LottoTickets(lottoTicketList);
 
