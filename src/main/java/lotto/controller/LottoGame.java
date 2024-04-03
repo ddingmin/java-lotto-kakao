@@ -1,5 +1,6 @@
-package lotto.model;
+package lotto.controller;
 
+import lotto.model.*;
 import lotto.model.dto.LottoResultDto;
 import lotto.model.dto.LottoTicketDto;
 

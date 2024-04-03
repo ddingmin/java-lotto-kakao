@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controller.LottoGame;
 import lotto.model.*;
 import lotto.model.dto.LottoResultDto;
 import org.junit.jupiter.api.Test;
