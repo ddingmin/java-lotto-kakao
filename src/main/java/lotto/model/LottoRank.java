@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum LottoRank {
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
@@ -20,12 +22,10 @@ public enum LottoRank {
         if (matchCount == FIRST.matchCount) {
             return matchBonus ? SECOND : FIRST;
         }
-        for (LottoRank lottoRank : values()) {
-            if (lottoRank.matchCount == matchCount) {
-                return lottoRank;
-            }
-        }
-        return NONE;
+        return Arrays.stream(values())
+                .filter(lottoRank -> lottoRank.matchCount == matchCount)
+                .findFirst()
+                .orElse(NONE);
     }
 
     public int getPrize() {
