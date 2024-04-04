@@ -31,7 +31,7 @@ public class LottoGame {
         this.lottoResult = lottoTickets.getWinningResult(new LottoWinningNumbers(lottos, bonus));
     }
 
-    public List<LottoTicketDto> getLottoTickets() {
+    private List<LottoTicketDto> getLottoTickets() {
         return lottoTickets.getLottoTickets().stream()
                 .map(LottoTicketDto::new)
                 .collect(Collectors.toList());
