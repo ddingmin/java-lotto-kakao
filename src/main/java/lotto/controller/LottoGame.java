@@ -1,50 +1,23 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.model.dto.LottoResultDto;
-import lotto.model.dto.LottoTicketDto;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoGame {
-    private final PurchaseAmount purchaseAmount;
-    private LottoTickets lottoTickets;
-    private LottoResult lottoResult;
-    private boolean isRaffled = false;
+    private final LottoMachine lottoMachine;
 
-    public LottoGame(int purchaseAmount) {
-        this.purchaseAmount = new PurchaseAmount(purchaseAmount);
+    public LottoGame(LottoMachine lottoMachine) {
+        this.lottoMachine = lottoMachine;
     }
 
-    public int getTicketCount() {
-        return (int) (this.purchaseAmount.getPurchaseAmount() / LottoTicket.PRICE);
+    public LottoTickets buy(int purchaseAmount) {
+        return lottoMachine.buy(new PurchaseAmount(purchaseAmount));
     }
 
-    public List<LottoTicketDto> buy(LottoMachine lottoMachine) {
-        lottoTickets = lottoMachine.buy(purchaseAmount);
-        return getLottoTickets();
+    public LottoWinningNumbers raffle(String lottos, int bonus) {
+        return new LottoWinningNumbers(lottos, bonus);
     }
 
-    public void raffle(String lottos, int bonus) {
-        isRaffled = true;
-        this.lottoResult = lottoTickets.getWinningResult(new LottoWinningNumbers(lottos, bonus));
-    }
-
-    private List<LottoTicketDto> getLottoTickets() {
-        return lottoTickets.getLottoTickets().stream()
-                .map(LottoTicketDto::new)
-                .collect(Collectors.toList());
-    }
-
-    public LottoResultDto getResult() {
-        validateRaffled();
-        return new LottoResultDto(this.lottoResult);
-    }
-
-    private void validateRaffled() {
-        if (!isRaffled) {
-            throw new RuntimeException("아직 추첨 전 입니다.");
-        }
+    public LottoResult getResult(LottoTickets tickets, LottoWinningNumbers winningNumbers) {
+        return tickets.getWinningResult(winningNumbers);
     }
 }

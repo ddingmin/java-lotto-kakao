@@ -2,26 +2,25 @@ package lotto;
 
 import lotto.controller.LottoGame;
 import lotto.model.*;
-import lotto.model.dto.LottoTicketDto;
 import lotto.view.Input;
 import lotto.view.Output;
 
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
-        int purchaseAmount = Input.getPurchaseAmount();
-        LottoGame lottoGame = new LottoGame(purchaseAmount);
         LottoTicketGeneratable generator = new LottoTicketGenerator();
-        List<LottoTicketDto> boughtTickets = lottoGame.buy(new LottoMachine(generator));
+        LottoGame lottoGame = new LottoGame(new LottoMachine(generator));
 
-        Output.printPurchaseAmount(boughtTickets.size());
+        int purchaseAmount = Input.getPurchaseAmount();
+        LottoTickets boughtTickets = lottoGame.buy(purchaseAmount);
+
+        Output.printPurchaseAmount(boughtTickets.getSize());
         Output.printLottoTickets(boughtTickets);
 
         String lottos = Input.getWinningNumbers();
         int bonus = Input.getBonusNumber();
-        lottoGame.raffle(lottos, bonus);
+        LottoWinningNumbers winningNumbers = lottoGame.raffle(lottos, bonus);
 
-        Output.printResult(lottoGame.getResult());
+        LottoResult result = lottoGame.getResult(boughtTickets, winningNumbers);
+        Output.printResult(result);
     }
 }

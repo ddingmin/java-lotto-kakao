@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class LottoResult {
@@ -22,8 +24,20 @@ public class LottoResult {
         return (float) calculateTotalPrize() / totalPurchaseAmount.getPurchaseAmount();
     }
 
-    public List<LottoRank> getLottoRanks() {
-        return lottoRanks;
+    public Map<LottoRank, Integer> produceStatics() {
+        Map<LottoRank, Integer> statistics = createLottoStatics();
+        this.lottoRanks.forEach(it -> statistics.computeIfPresent(it, (rank, value) -> value + 1));
+        return statistics;
+    }
+
+    private Map<LottoRank, Integer> createLottoStatics() {
+        Map<LottoRank, Integer> statistics = new HashMap<>();
+        statistics.put(LottoRank.FIRST, 0);
+        statistics.put(LottoRank.SECOND, 0);
+        statistics.put(LottoRank.THIRD, 0);
+        statistics.put(LottoRank.FOURTH, 0);
+        statistics.put(LottoRank.FIFTH, 0);
+        return statistics;
     }
 
     @Override

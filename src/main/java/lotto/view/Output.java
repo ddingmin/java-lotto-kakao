@@ -1,9 +1,9 @@
 package lotto.view;
 
-import lotto.model.dto.LottoResultDto;
-import lotto.model.dto.LottoTicketDto;
+import lotto.model.LottoResult;
+import lotto.model.LottoTicket;
+import lotto.model.LottoTickets;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class Output {
@@ -12,26 +12,26 @@ public class Output {
         System.out.println(count + "개를 구매했습니다.");
     }
 
-    public static void printLottoTickets(List<LottoTicketDto> lottoTickets) {
-        lottoTickets.forEach(Output::printLottoTicket);
+    public static void printLottoTickets(LottoTickets tickets) {
+        tickets.getLottoTickets().forEach(Output::printLottoTicket);
         System.out.println();
     }
 
-    public static void printResult(LottoResultDto lottoResultDto) {
+    public static void printResult(LottoResult result) {
         System.out.println("\n당첨 통계");
         System.out.println("---------");
-        lottoResultDto.getLottoResult().entrySet().stream()
+        result.produceStatics().entrySet().stream()
                 .sorted((o1, o2) -> o1.getKey().getPrize() - o2.getKey().getPrize())
                 .forEach(entry -> {
                     System.out.println(entry.getKey().getMatchCount() + "개 일치" + (entry.getKey().isMatchBonus() ? ", 보너스 볼 일치" : "")
                             + "(" + entry.getKey().getPrize() + ")- " + entry.getValue() + "개");
                 });
-        System.out.println("총 수익률은 " + lottoResultDto.getReturnRate() + "입니다.");
+        System.out.println("총 수익률은 " + result.calculateReturnRate() + "입니다.");
 
     }
 
-    private static void printLottoTicket(LottoTicketDto lottoTicket) {
-        System.out.println("[" + lottoTicket.getLottoNumbers().stream()
+    private static void printLottoTicket(LottoTicket ticket) {
+        System.out.println("[" + ticket.getLottoNumbers().stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "))
                 + "]");
