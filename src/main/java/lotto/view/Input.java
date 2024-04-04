@@ -6,6 +6,9 @@ public class Input {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    private Input() {
+    }
+
     public static int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return Integer.parseInt(scanner.nextLine());

@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 public class Output {
 
+    private Output() {
+    }
+
     public static void printPurchaseAmount(int count) {
         System.out.println(count + "개를 구매했습니다.");
     }
