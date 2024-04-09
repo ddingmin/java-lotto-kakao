@@ -3,12 +3,18 @@ package lotto.model;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoTickets {
-    private final List<LottoTicket> lottoTickets;
+    private List<LottoTicket> lottoTickets;
 
     public LottoTickets(List<LottoTicket> lottoTickets) {
         this.lottoTickets = lottoTickets;
+    }
+
+    public void addAll(List<LottoTicket> lottoTickets) {
+        this.lottoTickets = Stream.concat(this.lottoTickets.stream(), lottoTickets.stream())
+                .collect(Collectors.toList());
     }
 
     public int getSize() {
