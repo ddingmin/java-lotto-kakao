@@ -14,8 +14,8 @@ public class Balance {
         this((long) balance);
     }
 
-    private void validate(Long amount) {
-        if (amount < 0) {
+    private void validate(Long balance) {
+        if (balance < 0) {
             throw new IllegalArgumentException("잔액은 0미만이 될 수 없습니다.");
         }
     }
@@ -24,9 +24,9 @@ public class Balance {
         return balance;
     }
 
-    public void pay(long amount) {
-        validate(balance - amount);
-        balance -= amount;
+    public void pay(long price) {
+        validate(balance - price);
+        balance -= price;
     }
 
     @Override
