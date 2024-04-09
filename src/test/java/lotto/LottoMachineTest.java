@@ -3,7 +3,7 @@ package lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoTicket;
 import lotto.model.LottoTicketGenerator;
-import lotto.model.PurchaseAmount;
+import lotto.model.Balance;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,6 +14,6 @@ public class LottoMachineTest {
         LottoTicketGenerator generator = new LottoTicketGenerator();
         LottoMachine lottoMachine = new LottoMachine(generator);
 
-        assertThat(lottoMachine.buy(new PurchaseAmount(5000L)).getSize()).isEqualTo(5000 / LottoTicket.PRICE);
+        assertThat(lottoMachine.buy(new Balance(5000L)).getSize()).isEqualTo(5000 / LottoTicket.PRICE);
     }
 }

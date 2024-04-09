@@ -20,7 +20,7 @@ public class LottoTickets {
                 .map(lottoTicket -> lottoTicket.match(winningNumbers))
                 .collect(Collectors.toList());
 
-        return new LottoResult(lottoRanks, new PurchaseAmount(this.getSize() * LottoTicket.PRICE));
+        return new LottoResult(lottoRanks, new Balance(this.getSize() * LottoTicket.PRICE));
     }
 
     public List<LottoTicket> getLottoTickets() {

@@ -66,6 +66,6 @@ public class LottoTicketsTest {
         ));
 
         assertThat(lottoTickets.getWinningResult(lottoWinningNumbers))
-                .isEqualTo(new LottoResult(List.of(LottoRank.FIRST, LottoRank.SECOND), new PurchaseAmount(2 * LottoTicket.PRICE)));
+                .isEqualTo(new LottoResult(List.of(LottoRank.FIRST, LottoRank.SECOND), new Balance(2 * LottoTicket.PRICE)));
     }
 }

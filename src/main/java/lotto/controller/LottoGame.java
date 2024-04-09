@@ -10,7 +10,7 @@ public class LottoGame {
     }
 
     public LottoTickets buy(int purchaseAmount) {
-        return lottoMachine.buy(new PurchaseAmount(purchaseAmount));
+        return lottoMachine.buy(new Balance(purchaseAmount));
     }
 
     public LottoWinningNumbers raffle(String lottos, int bonus) {
