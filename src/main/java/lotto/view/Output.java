@@ -39,4 +39,12 @@ public class Output {
                 .collect(Collectors.joining(", "))
                 + "]");
     }
+
+    public static void printSelfLottoTickets() {
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+    }
+
+    public static void printBoughtLottoTicket() {
+        System.out.println("수동으로 3장, 자동으로 11개를 구매했습니다.");
+    }
 }
