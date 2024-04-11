@@ -29,8 +29,8 @@ public class LottoResultTest {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {0, -1})
-    void 구매금액이_0이하면_예외를_던진다(long purchaseAmount) {
+    @ValueSource(longs = {-1, -1000})
+    void 구매금액이_0_미만이면_예외를_던진다(long purchaseAmount) {
         List<LottoRank> ranks = List.of(LottoRank.FIRST);
 
         assertThatThrownBy(() -> new LottoResult(ranks, new Balance(purchaseAmount)))

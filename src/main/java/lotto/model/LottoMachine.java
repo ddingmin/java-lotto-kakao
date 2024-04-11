@@ -21,6 +21,10 @@ public class LottoMachine {
         return new LottoTickets(lottoTicketList);
     }
 
+    public LottoTickets buy(List<LottoTicket> lottoTickets) {
+        return new LottoTickets(lottoTickets);
+    }
+
     private int calculatePurchaseTicket(Balance balance) {
         return (int) balance.getBalance() / LottoTicket.PRICE;
     }
