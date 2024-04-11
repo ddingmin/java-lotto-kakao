@@ -29,9 +29,9 @@ public class Main {
 
         boughtTickets.addAll(selfBoughtTickets.getLottoTickets());
 
-        String lottos = Input.getWinningNumbers();
+        String normalWinningNumbers = Input.getWinningNumbers();
         int bonus = Input.getBonusNumber();
-        LottoWinningNumbers winningNumbers = lottoGame.raffle(lottos, bonus);
+        LottoWinningNumbers winningNumbers = lottoGame.raffle(normalWinningNumbers, bonus);
 
         LottoResult result = lottoGame.getResult(boughtTickets, winningNumbers);
         Output.printResult(result);
