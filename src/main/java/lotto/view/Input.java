@@ -9,7 +9,7 @@ public class Input {
     private Input() {
     }
 
-    public static int getPurchaseAmount() {
+    public static int getBalance() {
         System.out.println("구입금액을 입력해 주세요.");
         return Integer.parseInt(scanner.nextLine());
     }

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,13 @@ public class LottoTicket {
         this.lottoNumbers = lottoNumbers.stream()
                 .sorted(Comparator.comparing(LottoNumber::getNumber))
                 .collect(Collectors.toList());
+    }
+
+    public LottoTicket(String lottoNumbers) {
+        this(Arrays.stream(lottoNumbers.split(", "))
+                .map(Integer::parseInt)
+                .map(LottoNumber::new)
+                .collect(Collectors.toList()));
     }
 
     private void validate(List<LottoNumber> lottoNumbers) {
