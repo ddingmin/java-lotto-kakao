@@ -12,8 +12,8 @@ public class LottoTickets {
         this.lottoTickets = lottoTickets;
     }
 
-    public void addAll(List<LottoTicket> lottoTickets) {
-        this.lottoTickets = Stream.concat(this.lottoTickets.stream(), lottoTickets.stream())
+    public void addAll(LottoTickets lottoTickets) {
+        this.lottoTickets = Stream.concat(this.lottoTickets.stream(), lottoTickets.getLottoTickets().stream())
                 .collect(Collectors.toList());
     }
 

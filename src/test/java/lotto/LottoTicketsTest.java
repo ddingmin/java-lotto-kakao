@@ -75,7 +75,7 @@ public class LottoTicketsTest {
         LottoTickets basicTickets = new LottoTickets(List.of(createLottoTicket(List.of(1, 2, 3, 4, 5, 6))));
         LottoTickets additionalTickets = new LottoTickets(List.of(createLottoTicket(List.of(7, 8, 9, 10, 11, 12))));
 
-        basicTickets.addAll(additionalTickets.getLottoTickets());
+        basicTickets.addAll(additionalTickets);
 
         assertThat(basicTickets.getLottoTickets())
                 .extracting(LottoTicket::getLottoNumbers)
