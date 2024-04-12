@@ -9,9 +9,9 @@ public class Input {
     private Input() {
     }
 
-    public static int getBalance() {
+    public static long getBalance() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(scanner.nextLine());
+        return Long.parseLong(scanner.nextLine());
     }
 
     public static String getWinningNumbers() {

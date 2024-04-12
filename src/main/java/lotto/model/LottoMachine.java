@@ -11,7 +11,7 @@ public class LottoMachine {
     }
 
     public LottoTickets buy(Balance balance) {
-        int purchaseTicket = calculatePurchaseTicket(balance);
+        long purchaseTicket = calculatePurchaseTicket(balance);
 
         List<LottoTicket> lottoTicketList = new ArrayList<>();
         for (int i = 0; i < purchaseTicket; i++) {
@@ -25,7 +25,7 @@ public class LottoMachine {
         return new LottoTickets(lottoTickets);
     }
 
-    private int calculatePurchaseTicket(Balance balance) {
-        return (int) balance.getBalance() / LottoTicket.PRICE;
+    private long calculatePurchaseTicket(Balance balance) {
+        return balance.getBalance() / LottoTicket.PRICE;
     }
 }

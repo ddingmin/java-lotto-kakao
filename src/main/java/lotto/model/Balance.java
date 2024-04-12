@@ -10,10 +10,6 @@ public class Balance {
         this.balance = balance;
     }
 
-    public Balance(int balance) {
-        this((long) balance);
-    }
-
     private void validate(Long balance) {
         if (balance < 0) {
             throw new IllegalArgumentException("잔액은 0미만이 될 수 없습니다.");
