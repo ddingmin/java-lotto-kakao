@@ -18,9 +18,8 @@ public class LottoTicket {
     }
 
     public LottoTicket(String lottoNumbers) {
-        this(Arrays.stream(lottoNumbers.split(", "))
-                .map(Integer::parseInt)
-                .map(LottoNumber::new)
+        this(Arrays.stream(lottoNumbers.split(","))
+                .map(it -> new LottoNumber(Integer.parseInt(it.trim())))
                 .collect(Collectors.toList()));
     }
 
